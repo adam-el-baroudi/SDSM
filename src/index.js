@@ -87,7 +87,7 @@ app.post("/login", async (req, res) => {
     }
 
     // إذا كلشي صحيح، نقدر نرسل الصفحة الرئيسية أو نعمل redirect
-    return res.render("home");
+    return res.render("HOME");
 
   } catch (err) {
     console.error("Login error:", err);
