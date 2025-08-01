@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="SDSM.CSS">
+    <title>SDS</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            
+        }
+        main {
+            font-family: 'Segoe UI', sans-serif;
+            /* background-color: #eef1f5; */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .contact-box {
+            background-color: white;
+            margin-top: 50px;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 450px;
+        }
+
+        h2 {
+            text-align: center;
+            /*color: #0e76a8;*/
+            margin-bottom: 20px;
+        }
+
+        p.description {
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 120px;
+        }
+
+        #button_contact {
+            width: 100%;
+            padding: 10px;
+            background: #00c3ff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #button_contact:hover {
+            background: #cccccc;
+            color: black;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .success {
+            color: green;
+            font-size: 15px;
+            text-align: center;
+        }
+        @media screen and (max-width: 768px){
+             
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .contact-box {
+            background-color: white;
+            margin-top: 50px;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 350px;
+        }
+        textarea {
+            resize: vertical;
+            height: 120px;
+        }
+
+
+        
+        }
+    </style>
+</head>
+<body>
+    <nav>
+  <div class="nav-container">
+    
+    <a href="/HOME" class="logo"><img src="/MEDIA/logo.png" alt="Logo SDS"></a>
+    <button id="nav-toggle">&#9776;</button>
+
+    <div id="nav-menu" class="nav-menu">
+      <a href="/HOME">HOME</a>
+      <a href="/equipe">QUI SOMMES-NOUS?</a>
+      <a href="/services">NOS SERVICES</a>
+      <a href="/contact">CONTACTER ICI</a>
+      <a href="/login" class="btn">LOGIN</a>
+      <a href="/inscrire">S'INSCRIRE ICI</a>
+    </div>
+  </div>
+</nav>
+ <main>
+    <div class="contact-box">
+        <h2>Contact</h2>
+        <p class="description">
+            Vous avez une question sur l'application SDS ou souhaitez collaborer avec nous ? Remplissez ce formulaire.
+        </p>
+        <form id="sdsContactForm" action="/contact" method="post">
+            <input type="text" id="nom" name="nomComplet" placeholder="Votre nom complet" required>
+            <input type="email" id="email" name="emailC" placeholder="Votre email" required>
+            <input type="text" id="sujet" name="sujet" placeholder="Sujet (ex : Bug, Suggestion...)" required>
+            <textarea id="message" name="explication" placeholder="Expliquez votre demande ou problème..." required></textarea>
+            <div class="error" id="errorMsg"></div>
+            <div class="success" id="successMsg"></div>
+            <button id="button_contact" type="submit">Envoyer le message</button>
+        </form>
+    </div>
+</main>
+  <footer>
+  <div class="footer-container">
+    <!-- Partie gauche -->
+    <div class="footer-left">
+      <p>&copy; 2025 SDS - Tous droits réservés.</p>
+      <div class="footer-links">
+        
+        <a href="#">Contact</a>
+      </div>
+    </div>
+
+    <!-- Partie droite -->
+    <div class="footer-right">
+      <p>Télécharger notre application :</p>
+      <div class="download-apps">
+        <a href="#"><img src="/MEDIA/Google_Play_Store_badge_FR.svg" alt="Play Store"></a>
+        <a href="#"><img src="/MEDIA/Download_on_the_App_Store_Badge_FRCA_RGB_blk.svg" alt="App Store"></a>
+      </div>
+      <div class="social-links">
+        <a href="#"><img src="/MEDIA/facebook.png" alt="Facebook"></a>
+        <a href="#"><img src="/MEDIA/sociale.png" alt="Instagram"></a>
+        <a href="#"><img src="/MEDIA/linkedin.png" alt="LinkedIn"></a>
+      </div>
+    </div>
+  </div>
+  </footer>
+
+  <script>
+    const toggleBtn = document.getElementById("nav-toggle");
+    const navMenu = document.getElementById("nav-menu");
+
+    // Toggle menu display
+    toggleBtn.addEventListener("click", () => {
+      navMenu.classList.toggle("show");
+    });
+
+    // Close menu when click on any link inside navMenu (optional, if you want menu to close after clicking a link)
+    navMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+          navMenu.classList.remove('show');
+      });
+    });
+
+</script>
+
+</body>
+</html>

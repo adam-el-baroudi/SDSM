@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="SDSM.CSS">
+    <title>SDS</title>
+</head>
+<body>
+<nav>
+  <div class="nav-container">
+    
+    <a href="/HOME" class="logo"><img src="/MEDIA/logo.png" alt="Logo SDS"></a>
+    <button id="nav-toggle">&#9776;</button>
+
+    <div id="nav-menu" class="nav-menu">
+      <a href="/HOME">HOME</a>
+      <a href="/equipe">QUI SOMMES-NOUS?</a>
+      <a href="/services">NOS SERVICES</a>
+      <a href="/contact">CONTACTER ICI</a>
+      <a href="/login" class="btn">LOGIN</a>
+      <a href="/inscrire">S'INSCRIRE ICI</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="main-cnt" style="padding: 15%; text-align: center;">
+    <h1 > Une solution sécurisée dans les systèmes médicaux.</h1>
+    <button id="button-main"><a href="/inscrire">JE VEUX CRÉER UN COMPTE</a></button>
+  </div>
+  <div class="desccription">
+    <h1 id="description-h1">Description</h1>
+    <div class="contet">
+      <p>"Le soleil brillait sur la place animée d'Agdal Riyad. Les vendeurs étalaient leurs marchandises colorées, attirant les regards des passants. Des rires d'enfants résonnaient, tandis que les arômes d'épices et de thé à la menthe flottaient dans l'air. C'était une journée typique, pleine de vie et de saveurs, où le tumulte de la ville se mêlait à la tranquillité des traditions.""Le soleil brillait sur la place animée d'Agdal Riyad. Les vendeurs étalaient leurs marchandises colorées, attirant les regards des passants. Des rires d'enfants résonnaient, tandis que les arômes d'épices et de thé à la menthe flottaient dans l'air. C'était une journée typique, pleine de vie et de saveurs, où le tumulte de la ville se mêlait à la tranquillité des traditions."</p>
+    </div>
+  </div>
+  <div>
+    <div class="some-service">
+      <div class="s-service">
+        <img src="/MEDIA/service.png" alt="">
+        <h3>Service 1</h3>
+        <p>Consultations médicales en ligne avec des spécialistes certifiés.</p>
+        <button><a href="">En savoir plus</a></button>
+      </div>
+
+      <div class="s-service">
+        <img src="/MEDIA/service.png" alt="">
+        <h3>Service 2</h3>
+        <p>Consultations médicales en ligne avec des spécialistes certifiés.</p>
+        <button><a href="">En savoir plus</a></button>
+      </div>
+
+      <div class="s-service">
+        <img src="/MEDIA/service.png" alt="">
+        <h3>Service 3</h3>
+        <p>Consultations médicales en ligne avec des spécialistes certifiés.</p>
+        <button><a href="">En savoir plus</a></button>
+      </div>
+          
+    </div>
+    <button id="button-voirtoutes" ><a href="/services">Voir toutes les services</a></button>
+  </div>
+    
+</main>
+
+<footer>
+  <div class="footer-container">
+    <!-- Partie gauche -->
+    <div class="footer-left">
+      <p>&copy; 2025 SDS - Tous droits réservés.</p>
+      <div class="footer-links">
+        
+        <a href="#">Contact</a>
+      </div>
+    </div>
+
+    <!-- Partie droite -->
+    <div class="footer-right">
+      <p>Télécharger notre application :</p>
+      <div class="download-apps">
+        <a href="#"><img src="/MEDIA/Google_Play_Store_badge_FR.svg" alt="Play Store"></a>
+        <a href="#"><img src="/MEDIA/Download_on_the_App_Store_Badge_FRCA_RGB_blk.svg" alt="App Store"></a>
+      </div>
+      <div class="social-links">
+        <a href="#"><img src="/MEDIA/facebook.png" alt="Facebook"></a>
+        <a href="#"><img src="/MEDIA/sociale.png" alt="Instagram"></a>
+        <a href="#"><img src="/MEDIA/linkedin.png" alt="LinkedIn"></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+
+<script>
+    const toggleBtn = document.getElementById("nav-toggle");
+    const navMenu = document.getElementById("nav-menu");
+
+    // Toggle menu display
+    toggleBtn.addEventListener("click", () => {
+      navMenu.classList.toggle("show");
+    });
+
+    // Close menu when click on any link inside navMenu (optional, if you want menu to close after clicking a link)
+    navMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+          navMenu.classList.remove('show');
+      });
+    });
+
+</script>
+
+</body>
+</html>

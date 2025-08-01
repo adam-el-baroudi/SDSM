@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="SDSM.CSS">
+    <title>SDS</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            
+        }
+        main {
+            font-family: Arial, sans-serif;
+            /* background: #f5f5f5; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .connexion {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 350px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #button_inscription {
+            width: 100%;
+            padding: 10px;
+            background:#00c3ff ;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #button_inscription:hover {
+            /*background: #0056b3;*/
+            background-color:  #cccccc;
+            color: black;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        @media screen and (max-width: 768px){
+             
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .connexion {
+            background-color: white;
+            margin-top: 50px;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 350px;
+        }
+        
+        }
+    </style>
+</head>
+<body>
+    
+    <nav>
+  <div class="nav-container">
+    
+    <a href="/HOME.html" class="logo"><img src="/MEDIA/logo.png" alt="Logo SDS"></a>
+    <button id="nav-toggle">&#9776;</button>
+
+    <div id="nav-menu" class="nav-menu">
+      <a href="/HOME">HOME</a>
+      <a href="/equipe">QUI SOMMES-NOUS?</a>
+      <a href="/services">NOS SERVICES</a>
+      <a href="/contact">CONTACTER ICI</a>
+      <a href="/login" class="btn">LOGIN</a>
+      <a href="/inscrire">S'INSCRIRE ICI</a>
+    </div>
+  </div>
+</nav>
+  <main>
+    <div class="connexion">
+        <h2>Bienvenu</h2>
+        <form id="registerForm" action="/login" method="post">
+           
+            <input type="text" name="name" placeholder="user" required>
+            <input type="password" id="password" name="Password"placeholder="Mot de passe" required>
+            <div class="error" id="errorMsg"></div>
+            <p>Vous n'avez pas de compte ? <a href="/inscrire">Inscrivez-vous</a></p>
+            <button id="button_inscription" type="submit">Connect</button>
+
+        </form>
+    </div>
+</main>
+  <footer>
+  <div class="footer-container">
+    <!-- Partie gauche -->
+    <div class="footer-left">
+      <p>&copy; 2025 SDS - Tous droits réservés.</p>
+      <div class="footer-links">
+        
+        <a href="#">Contact</a>
+      </div>
+    </div>
+
+    <!-- Partie droite -->
+    <div class="footer-right">
+      <p>Télécharger notre application :</p>
+      <div class="download-apps">
+        <a href="#"><img src="/MEDIA/Google_Play_Store_badge_FR.svg" alt="Play Store"></a>
+        <a href="#"><img src="/MEDIA/Download_on_the_App_Store_Badge_FRCA_RGB_blk.svg" alt="App Store"></a>
+      </div>
+      <div class="social-links">
+        <a href="#"><img src="/MEDIA/facebook.png" alt="Facebook"></a>
+        <a href="#"><img src="/MEDIA/sociale.png" alt="Instagram"></a>
+        <a href="#"><img src="/MEDIA/linkedin.png" alt="LinkedIn"></a>
+      </div>
+    </div>
+  </div>
+  </footer>
+  <script>
+    const toggleBtn = document.getElementById("nav-toggle");
+    const navMenu = document.getElementById("nav-menu");
+
+    // Toggle menu display
+    toggleBtn.addEventListener("click", () => {
+      navMenu.classList.toggle("show");
+    });
+
+    // Close menu when click on any link inside navMenu (optional, if you want menu to close after clicking a link)
+    navMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+          navMenu.classList.remove('show');
+      });
+    });
+
+</script>
+</body>
+</html>

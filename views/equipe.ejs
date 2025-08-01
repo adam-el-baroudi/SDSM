@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="SDSM.CSS">
+    <title>SDS</title>
+    <style>
+        
+        .main-img {
+            position: relative;
+            background-image: url(../MEDIA/test-img.jpg);
+            background-size: cover;
+            background-position: center;
+            
+        }
+        
+
+/* couche sombre au-dessus de l’image de fond */
+        .main-cnt::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(0, 0, 0, 0.4); /* ajuster l’opacité ici */
+            pointer-events: none;
+        }
+        main h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #1a2b50;
+        }
+        /* .team-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 8%;
+            padding: 20px;             
+        } */
+         .team-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* exactement 3 colonnes */
+            gap: 30px; /* espace entre les colonnes */
+            padding: 20px;
+            justify-content: center; /* centre la grille horizontalement */
+            max-width: 1000px; /* limite la largeur pour éviter qu’elle s’étale trop */
+            margin: 0 auto; /* centre le conteneur dans la page */
+        }
+
+
+        .team {
+            background-color: #f0f8ff;
+            border: 1px solid #ccc;
+            /* padding: 100px; */
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .team img{
+            width: 100%;
+            border-radius: 10px;
+            
+        }
+
+        .team:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .team h3 {
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .team p {
+            color: #555;
+            font-size: 0.95em;
+        }
+        @media (max-width: 768px) {
+            .team-container {
+                grid-template-columns: 1fr; /* une seule colonne sur mobile */
+                padding: 10px;
+                gap: 20px;
+            }
+
+            .team {
+                padding: 10px;
+            }
+
+            .team img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            main h2 {
+                font-size: 1.5rem;
+                padding: 0 10px;
+            }
+            main h1{
+                padding: 50px 10px;
+                
+            }
+            .main-img{
+                height: 30vh;
+            }
+            
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+  <div class="nav-container">
+    
+    <a href="/HOME" class="logo"><img src="/MEDIA/logo.png" alt="Logo SDS"></a>
+    <button id="nav-toggle">&#9776;</button>
+
+    <div id="nav-menu" class="nav-menu">
+      <a href="/HOME">HOME</a>
+      <a href="/equipe">QUI SOMMES-NOUS?</a>
+      <a href="/services">NOS SERVICES</a>
+      <a href="/contact">CONTACTER ICI</a>
+      <a href="/login" class="btn">LOGIN</a>
+      <a href="/inscrire">S'INSCRIRE ICI</a>
+    </div>
+  </div>
+</nav>
+  <main>
+    <div class="main-img" style="padding: 12%; text-align: center;">
+      <h1 > Qui sommes-nous ?</h1>
+    </div>
+    <h2>Services</h2>
+    <div class="team-container">
+        <div class="team">
+            <img src="/MEDIA/persone.jpg" alt="">
+            <h3>Membre 1</h3>
+            <p>travaile</p>
+        </div>
+        <div class="team">
+            <img src="/MEDIA/persone.jpg" alt="">
+            <h3>Membre 2</h3>
+            <p>travaile</p>
+        </div>
+        <div class="team">
+            <img src="/MEDIA/persone.jpg" alt="">
+            <h3>Membre 3</h3>
+            <p>travaile</p>
+        </div>
+        <div class="team">
+            <img src="/MEDIA/persone.jpg" alt="">
+            <h3>Membre 4</h3>
+            <p>travaile</p>
+        </div>
+        <div class="team">
+            <img src="/MEDIA/persone.jpg" alt="">
+            <h3>Membre 5</h3>
+            <p>travaile</p>
+        </div>
+        <div class="team">
+            <img src="/MEDIA/persone.jpg" alt="">
+            <h3>Membre 6</h3>
+            <p>travaile</p>
+        </div>
+
+    </div>
+    
+</div>
+</main>
+  <footer>
+  <div class="footer-container">
+    <!-- Partie gauche -->
+    <div class="footer-left">
+      <p>&copy; 2025 SDS - Tous droits réservés.</p>
+      <div class="footer-links">
+        
+        <a href="#">Contact</a>
+      </div>
+    </div>
+
+    <!-- Partie droite -->
+    <div class="footer-right">
+      <p>Télécharger notre application :</p>
+      <div class="download-apps">
+        <a href="#"><img src="/MEDIA/Google_Play_Store_badge_FR.svg" alt="Play Store"></a>
+        <a href="#"><img src="/MEDIA/Download_on_the_App_Store_Badge_FRCA_RGB_blk.svg" alt="App Store"></a>
+      </div>
+      <div class="social-links">
+        <a href="#"><img src="/MEDIA/facebook.png" alt="Facebook"></a>
+        <a href="#"><img src="/MEDIA/sociale.png" alt="Instagram"></a>
+        <a href="#"><img src="/MEDIA/linkedin.png" alt="LinkedIn"></a>
+      </div>
+    </div>
+  </div>
+  </footer>
+  <script>
+    const toggleBtn = document.getElementById("nav-toggle");
+    const navMenu = document.getElementById("nav-menu");
+
+    // Toggle menu display
+    toggleBtn.addEventListener("click", () => {
+      navMenu.classList.toggle("show");
+    });
+
+    // Close menu when click on any link inside navMenu (optional, if you want menu to close after clicking a link)
+    navMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+          navMenu.classList.remove('show');
+      });
+    });
+
+</script>
+
+</body>
+</html>

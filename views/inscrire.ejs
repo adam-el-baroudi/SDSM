@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="SDSM.CSS">
+    <title>SDS</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            
+        }
+        main {
+            font-family: Arial, sans-serif;
+            /* background: #f5f5f5; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background: white;
+            padding: 100px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 700px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #button_inscription {
+            width: 100%;
+            padding: 10px;
+            background: #00c3ff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #button_inscription:hover {
+            background:#cccccc;
+            color: black;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        @media screen and (max-width: 768px){
+            input[type="text"],
+        input[type="tel"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-container {
+            background: white;
+            padding: 50px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 350px;
+        }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+  <div class="nav-container">
+    
+    <a href="/HOME" class="logo"><img src="/MEDIA/logo.png" alt="Logo SDS"></a>
+    <button id="nav-toggle">&#9776;</button>
+
+    <div id="nav-menu" class="nav-menu">
+      <a href="/HOME">HOME</a>
+      <a href="/equipe">QUI SOMMES-NOUS?</a>
+      <a href="/services">NOS SERVICES</a>
+      <a href="/contact">CONTACTER ICI</a>
+      <a href="/login" class="btn">LOGIN</a>
+      <a href="/inscrire">S'INSCRIRE ICI</a>
+    </div>
+  </div>
+</nav>
+  <main>
+    <div class="form-container">
+        <h2>Inscription</h2>
+        <form id="registerForm" action="/inscrire" method="post">
+            <input type="text" id="nom" name = "name" placeholder="Nom complet" required>
+            <input type="email" id="email" name ="email" placeholder="Email" required>
+            <input type="tel" id="numero" name="PhoneNumber" placeholder="Numéro de téléphone" required>
+            <input type="password" id="password" name="Password" placeholder="Mot de passe" required>
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirmer le mot de passe" required>
+            <div class="error" id="errorMsg"></div>
+            <button id="button_inscription" type="submit">S'inscrire</button>
+        </form>
+    </div>
+</main>
+  <footer>
+  <div class="footer-container">
+    <!-- Partie gauche -->
+    <div class="footer-left">
+      <p>&copy; 2025 SDS - Tous droits réservés.</p>
+      <div class="footer-links">
+        
+        <a href="#">Contact</a>
+      </div>
+    </div>
+
+    <!-- Partie droite -->
+    <div class="footer-right">
+      <p>Télécharger notre application :</p>
+      <div class="download-apps">
+        <a href="#"><img src="/MEDIA/Google_Play_Store_badge_FR.svg" alt="Play Store"></a>
+        <a href="#"><img src="/MEDIA/Download_on_the_App_Store_Badge_FRCA_RGB_blk.svg" alt="App Store"></a>
+      </div>
+      <div class="social-links">
+        <a href="#"><img src="/MEDIA/facebook.png" alt="Facebook"></a>
+        <a href="#"><img src="/MEDIA/sociale.png" alt="Instagram"></a>
+        <a href="#"><img src="/MEDIA/linkedin.png" alt="LinkedIn"></a>
+      </div>
+    </div>
+  </div>
+  </footer>
+  <script>
+    const toggleBtn = document.getElementById("nav-toggle");
+    const navMenu = document.getElementById("nav-menu");
+
+    // Toggle menu display
+    toggleBtn.addEventListener("click", () => {
+      navMenu.classList.toggle("show");
+    });
+
+    // Close menu when click on any link inside navMenu (optional, if you want menu to close after clicking a link)
+    navMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+          navMenu.classList.remove('show');
+      });
+    });
+
+</script>
+</body>
+</html>
