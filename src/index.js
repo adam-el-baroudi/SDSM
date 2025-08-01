@@ -72,25 +72,29 @@ app.post("/inscrire" , async(req , res)=>{
     res.redirect("/");
 });
 
-app.post("/login" , async(req , res)=> {
-    try{
-        const check = await user.findOne({name : req.body.name});
-        if(!check){
-            res.send("User name cannot found")
-        }
+app.post("/login", async (req, res) => {
+  try {
+    const check = await user.findOne({ name: req.body.name });
+    
+    if (!check) {
+      return res.status(400).send("User name not found");
+    }
 
-        const isPasswordMatch = await bcrypt.compare(req.body.Password,check.Password);
-        if (!isPasswordMatch) {
-            res.send("wrong Password");
-        }
-        else {
-            res.render("home");
-        }
+    const isPasswordMatch = await bcrypt.compare(req.body.Password, check.Password);
+    
+    if (!isPasswordMatch) {
+      return res.status(400).send("Wrong password");
     }
-    catch{
-        res.send("wrong Details");
-    }
+
+    // إذا كلشي صحيح، نقدر نرسل الصفحة الرئيسية أو نعمل redirect
+    return res.render("home");
+
+  } catch (err) {
+    console.error("Login error:", err);
+    return res.status(500).send("Internal Server Error");
+  }
 });
+
 
 app.post("/contact" ,async(req , res) => {
     console.log("Donnees recues :", req.body);
