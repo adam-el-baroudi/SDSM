@@ -1,17 +1,34 @@
 const express = require("express");
 const path = require("path");
 const bcrypt = require("bcryptjs");
+const session = require("express-session");
+const MongoStore = require("connect-mongo");
 const {user , contact} = require('./config');
 const { Collection } = require("mongoose");
+
 
 const app = express();
 
 app.use(express.json());
 
+
+
 app.use(express.static("public"));
 app.use('/MEDIA', express.static('MEDIA'));
 
 app.use(express.urlencoded({ extended: false }));
+
+app.use(session({
+  secret: 'your-secret-key', // tu peux changer cette clé secrète
+  resave: false,
+  saveUninitialized: false
+}));
+
+
+app.use((req, res, next) => {
+  res.locals.user = req.session.user || null;
+  next();
+});
 
 app.set("view engine", "ejs");
 
@@ -100,6 +117,12 @@ app.post("/login", async (req, res) => {
       return res.status(400).send("Wrong password");
     }
 
+    req.session.user = {
+      id: check._id,
+      name: check.name,
+      email: check.email
+    };
+
     // إذا كلشي صحيح، نقدر نرسل الصفحة الرئيسية أو نعمل redirect
     return res.render("HOME");
 
@@ -107,6 +130,12 @@ app.post("/login", async (req, res) => {
     console.error("Login error:", err);
     return res.status(500).send("Internal Server Error");
   }
+});
+
+app.get("/logout", (req, res) => {
+  req.session.destroy(() => {
+    res.redirect("/HOME");
+  });
 });
 
 
