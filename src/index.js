@@ -75,25 +75,10 @@ app.post("/inscrire" , async(req , res)=>{
 
 app.post("/login", async (req, res) => {
   try {
-    // const check = await user.findOne({ name: req.body.name });
+    const check = await user.findOne({ name: req.body.name });
     
-    // if (!check) {
-    //   return res.status(400).send("User name not found");
-    // }
-
-    const input = req.body.identifier; // peut être soit email soit nom
-    
-
-    // chercher soit par email soit par username
-    const userCheck = await user.findOne({
-    $or: [
-        { email: input },
-        { name: input }
-    ]
-    });
-
-    if (!userCheck) {
-    return res.status(400).send("Utilisateur non trouvé");
+    if (!check) {
+      return res.status(400).send("User name not found");
     }
 
 
