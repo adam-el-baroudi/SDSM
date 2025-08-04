@@ -75,11 +75,23 @@ app.post("/inscrire" , async(req , res)=>{
 
 app.post("/login", async (req, res) => {
   try {
-    const check = await user.findOne({ name: req.body.name });
+    // const check = await user.findOne({ name: req.body.name });
     
+    // if (!check) {
+    //   return res.status(400).send("User name not found");
+    // }
+    const identifier = req.body.name;
+    const check = await user.findOne({
+      $or: [
+        { name: identifier },
+        { email: identifier }
+      ]
+    });
     if (!check) {
-      return res.status(400).send("User name not found");
+      return res.status(400).send("Nom ou email introuvable");
     }
+
+
 
 
     const isPasswordMatch = await bcrypt.compare(req.body.Password, check.Password);
