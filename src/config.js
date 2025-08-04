@@ -31,7 +31,7 @@ const Loginschema = new mongoose.Schema({
     },
     createdAtt : {
         type:Date,
-        default: Date.now
+        default: () => new Date().toLocaleString("fr-MA", { timeZone: "Africa/Casablanca" })
     }
    
 
