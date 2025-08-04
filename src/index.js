@@ -78,7 +78,7 @@ app.post("/login", async (req, res) => {
     const check = await user.findOne({ name: req.body.name });
     const check2 = await user.findOne({ email: req.body.email });
     
-    if (!check || !check2) {
+    if (!check && !check2) {
       return res.status(400).send("User name not found");
     }
 
