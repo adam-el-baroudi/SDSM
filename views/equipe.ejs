@@ -120,8 +120,17 @@
       <a href="/equipe">QUI SOMMES-NOUS?</a>
       <a href="/services">NOS SERVICES</a>
       <a href="/contact">CONTACTER ICI</a>
-      <a href="/login" class="btn">LOGIN</a>
-      <a href="/inscrire">S'INSCRIRE ICI</a>
+
+      <% if (!user) { %>
+        <a href="/login" class="btn">LOGIN</a>
+        <a href="/inscrire">S'INSCRIRE ICI</a>
+      <% } else { %>
+        <span style="color: #00aaff; font-weight: bold;">Bienvenue, <%= user.name %></span>
+        <a href="/logout">DÉCONNEXION</a>
+      <% } %>
+
+      <!-- <a href="/login" class="btn">LOGIN</a>
+      <a href="/inscrire">S'INSCRIRE ICI</a> -->
     </div>
   </div>
 </nav>
