@@ -28,6 +28,10 @@ const Loginschema = new mongoose.Schema({
     Password: {
         type: String,
         required: true
+    },
+    createdAtt : {
+        type:Date,
+        default: Date.now
     }
    
 
@@ -49,7 +53,8 @@ const contactshema = new mongoose.Schema({
     explication : {
         type: String,
         required: true
-    }
+    },
+
 });
 
 const user = new mongoose.model("users",Loginschema);
