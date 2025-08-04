@@ -124,7 +124,7 @@ app.post("/login", async (req, res) => {
     };
 
     // إذا كلشي صحيح، نقدر نرسل الصفحة الرئيسية أو نعمل redirect
-    return res.render("HOME");
+    return res.redirect("/HOME");
 
   } catch (err) {
     console.error("Login error:", err);
