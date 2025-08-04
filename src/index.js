@@ -56,8 +56,9 @@ app.post("/inscrire" , async(req , res)=>{
         return res.send("Passwords do not match");
     }
     const existingUser = await user.findOne({name : data.name});
+    const existingEmail = await user.findOne({email : data.email});
 
-    if(existingUser){
+    if(existingUser || existingEmail){
         return res.send('User already exists. Please choose a different username.');
     }
 
@@ -75,8 +76,9 @@ app.post("/inscrire" , async(req , res)=>{
 app.post("/login", async (req, res) => {
   try {
     const check = await user.findOne({ name: req.body.name });
+    const check2 = await user.findOne({ email: req.body.email });
     
-    if (!check) {
+    if (!check || !check2) {
       return res.status(400).send("User name not found");
     }
 
