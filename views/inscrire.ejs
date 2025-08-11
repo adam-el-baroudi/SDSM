@@ -126,7 +126,7 @@
             <input type="tel" id="numero" name="PhoneNumber" placeholder="Numéro de téléphone" required>
             <input type="password" id="password" name="Password" placeholder="Mot de passe" required>
             <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirmer le mot de passe" required>
-            <div class="error" id="errorMsg"></div>
+            <div class="error" id="errorMsg"><center></center></div>
             <button id="button_inscription" type="submit">S'inscrire</button>
         </form>
     </div>
@@ -173,6 +173,30 @@
       });
     });
 
+</script>
+
+<script>
+document.getElementById("registerForm").addEventListener("submit", async function(e) {
+    e.preventDefault(); // Empêche le rechargement
+
+    const formData = new FormData(this);
+
+    try {
+        const res = await fetch("/inscrire", {
+            method: "POST",
+            body: formData
+        });
+
+        if (!res.ok) {
+            const errorText = await res.text();
+            document.getElementById("errorMsg").innerHTML = `<center style="color:red">${errorText}</center>`;
+        } else {
+            window.location.href = "/HOME"; // Redirection si succès
+        }
+    } catch (err) {
+        document.getElementById("errorMsg").innerHTML = `<center style="color:red">Erreur serveur</center>`;
+    }
+});
 </script>
 </body>
 </html>
