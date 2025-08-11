@@ -61,7 +61,8 @@ app.get("/services", (req, res) => {
 });
 
 app.post("/inscrire" , async(req , res)=>{
-    console.log("Donnees recues :", req.body);
+    try{
+      console.log("Donnees recues :", req.body);
     const data = {
         name: req.body.name,
         email: req.body.email,
@@ -70,13 +71,13 @@ app.post("/inscrire" , async(req , res)=>{
         confirmPassword: req.body.confirmPassword
     }
     if (data.Password !== data.confirmPassword){
-        return res.status(500).send("Passwords do not match");
+        return res.status(400).send("Passwords do not match");
     }
     const existingUser = await user.findOne({name : data.name});
     const existingEmail = await user.findOne({email : data.email});
 
     if(existingUser || existingEmail){
-        return res.status(500).send('User already exists. Please choose a different username.');
+        return res.status(409).send('Utilisateur déjà existant');
     }
 
     const saltRounds = 10;
@@ -88,6 +89,11 @@ app.post("/inscrire" , async(req , res)=>{
     console.log("User inserted:", userdata);
 
     res.redirect("/");
+    }
+    catch(err){
+      console.error("Erreur /inscrire :", err);
+        res.status(500).send("Erreur interne du serveur");
+    }
 });
 
 app.post("/login", async (req, res) => {
