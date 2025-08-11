@@ -70,13 +70,13 @@ app.post("/inscrire" , async(req , res)=>{
         confirmPassword: req.body.confirmPassword
     }
     if (data.Password !== data.confirmPassword){
-        return res.send("Passwords do not match");
+        return res.status(500).send("Passwords do not match");
     }
     const existingUser = await user.findOne({name : data.name});
     const existingEmail = await user.findOne({email : data.email});
 
     if(existingUser || existingEmail){
-        return res.send('User already exists. Please choose a different username.');
+        return res.status(500).send('User already exists. Please choose a different username.');
     }
 
     const saltRounds = 10;
@@ -105,7 +105,7 @@ app.post("/login", async (req, res) => {
       ]
     });
     if (!check) {
-      return res.status(400).send("Nom ou email introuvable");
+      return res.status(500).send("Nom ou email introuvable");
     }
 
 
@@ -114,7 +114,7 @@ app.post("/login", async (req, res) => {
     const isPasswordMatch = await bcrypt.compare(req.body.Password, check.Password);
     
     if (!isPasswordMatch) {
-      return res.status(400).send("Wrong password");
+      return res.status(500).send("Wrong password");
     }
 
     req.session.user = {
