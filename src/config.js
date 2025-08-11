@@ -57,7 +57,9 @@ const contactshema = new mongoose.Schema({
 
 });
 
+
 const user = new mongoose.model("users",Loginschema);
 const contact = new mongoose.model("contact",contactshema);
+
 
 module.exports = {user , contact};
