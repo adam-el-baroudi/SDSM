@@ -87,12 +87,17 @@ app.post("/inscrire" , async(req , res)=>{
 
     const userdata = await user.create(data);
     console.log("User inserted:", userdata);
-
     res.redirect("/");
+    //res.redirect("/");
     }
     catch(err){
       console.error("Erreur /inscrire :", err);
-        res.status(500).send("Erreur interne du serveur");
+
+        if (err.name === "ValidationError") {
+            return res.status(400).send(err.message);
+        }
+
+        res.status(500).send(err.message || "Erreur interne du serveur");
     }
 });
 
