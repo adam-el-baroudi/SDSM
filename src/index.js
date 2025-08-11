@@ -128,7 +128,7 @@ app.post("/login", async (req, res) => {
 
   } catch (err) {
     console.error("Login error:", err);
-    return res.status(500).send("L'e-mail ou le numéro de mobile entré n'est pas associé à un compte. Trouvez votre compte et connectez-vous.L'e-mail ou le numéro de mobile entré n'est pas associé à un compte. Trouvez votre compte et connectez-vous.");
+    return res.status(500).send("L'e-mail ou le numéro de mobile entré n'est pas associé à un compte. Trouvez votre compte et connectez-vous.");
   }
 });
 
