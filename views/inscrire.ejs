@@ -175,28 +175,6 @@
 
 </script>
 
-<script>
-document.getElementById("registerForm").addEventListener("submit", async function(e) {
-    e.preventDefault(); // Empêche le rechargement
 
-    const formData = new FormData(this);
-
-    try {
-        const res = await fetch("/inscrire", {
-            method: "POST",
-            body: formData
-        });
-
-        if (!res.ok) {
-            const errorText = await res.text();
-            document.getElementById("errorMsg").innerHTML = `<center style="color:red">${errorText}</center>`;
-        } else {
-            window.location.href = "/HOME"; // Redirection si succès
-        }
-    } catch (err) {
-        document.getElementById("errorMsg").innerHTML = `<center style="color:red">Erreur serveur</center>`;
-    }
-});
-</script>
 </body>
 </html>
