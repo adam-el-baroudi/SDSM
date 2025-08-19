@@ -128,64 +128,31 @@ app.post("/inscrire", async (req, res) => {
 });
 
 
-// app.post("/login", async (req, res) => {
-//   try {
-//     // const check = await user.findOne({ name: req.body.name });
-    
-//     // if (!check) {
-//     //   return res.status(400).send("User name not found");
-//     // }
-//     const identifier = req.body.name;
-//     const check = await user.findOne({
-//       $or: [
-//         { name: identifier },
-//         { email: identifier }
-//       ]
-//     });
-//     if (!check) {
-//       return res.status(500).send("Nom ou email introuvable");
-//     }
-
-
-
-
-//     const isPasswordMatch = await bcrypt.compare(req.body.Password, check.Password);
-    
-//     if (!isPasswordMatch) {
-//       return res.status(500).send("Wrong password");
-//     }
-
-//     req.session.user = {
-//       id: check._id,
-//       name: check.name,
-//       email: check.email
-//     };
-
-//     // إذا كلشي صحيح، نقدر نرسل الصفحة الرئيسية أو نعمل redirect
-//     return res.redirect("/HOME");
-
-//   } catch (err) {
-//     console.error("Login error:", err);
-//     return res.status(500).send("L'e-mail ou le numéro de mobile entré n'est pas associé à un compte. Trouvez votre compte et connectez-vous.");
-//   }
-// });
-
 app.post("/login", async (req, res) => {
   try {
+    // const check = await user.findOne({ name: req.body.name });
+    
+    // if (!check) {
+    //   return res.status(400).send("User name not found");
+    // }
     const identifier = req.body.name;
-
     const check = await user.findOne({
-      $or: [{ name: identifier }, { email: identifier }]
+      $or: [
+        { name: identifier },
+        { email: identifier }
+      ]
     });
-
     if (!check) {
-      return res.status(404).send("Nom ou email introuvable");
+      return res.status(500).send("Nom ou email introuvable");
     }
 
-    const isPasswordMatch = await bcrypt.compare(req.body.Password, check.Password);
 
+
+
+    const isPasswordMatch = await bcrypt.compare(req.body.Password, check.Password);
+    
     if (!isPasswordMatch) {
-      return res.status(401).send("Mot de passe incorrect");
+      return res.status(500).send("Wrong password");
     }
 
     req.session.user = {
@@ -194,16 +161,16 @@ app.post("/login", async (req, res) => {
       email: check.email
     };
 
+    // إذا كلشي صحيح، نقدر نرسل الصفحة الرئيسية أو نعمل redirect
     return res.redirect("/HOME");
 
   } catch (err) {
-    
-  console.error("Login error:", err.message, err.stack);
-  return res.status(500).send("Internal Server Error");
-
-    
+    console.error("Login error:", err);
+    return res.status(500).send("L'e-mail ou le numéro de mobile entré n'est pas associé à un compte. Trouvez votre compte et connectez-vous.");
   }
 });
+
+
 
 
 app.get("/logout", (req, res) => {
