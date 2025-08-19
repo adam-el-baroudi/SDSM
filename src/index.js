@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(express.static("public"));
 app.use('/MEDIA', express.static('MEDIA'));
 
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 
 
 app.use(session({
