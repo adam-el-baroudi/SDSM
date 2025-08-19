@@ -18,10 +18,11 @@ app.use('/MEDIA', express.static('MEDIA'));
 
 app.use(express.urlencoded({ extended: false }));
 
+
 app.use(session({
-  secret: 'your-secret-key', // tu peux changer cette clé secrète
+  secret: 'votreSecretKey',
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: true,
 }));
 
 
@@ -196,8 +197,11 @@ app.post("/login", async (req, res) => {
     return res.redirect("/HOME");
 
   } catch (err) {
-    console.error("Login error:", err);
-    return res.status(500).send("Internal Server Error");
+    
+  console.error("Login error:", err.message, err.stack);
+  return res.status(500).send("Internal Server Error");
+
+    
   }
 });
 
