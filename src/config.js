@@ -1,6 +1,7 @@
 require("dotenv").config();
 
 const mongoose = require('mongoose');
+const { DateTime } = require("luxon");
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB connected"))
@@ -12,30 +13,18 @@ mongoose.connect(process.env.MONGO_URI)
 
 
 
-const Loginschema = new mongoose.Schema({
-    name: {
-        type:String,
-        required: true
-    },
-    email: {
-        type:String,
-        required: true
-    },
-    PhoneNumber: {
-        type: String,
-        required: true
-    },
-    Password: {
-        type: String,
-        required: true
-    },
-    createdAtt : {
-        type:Date,
-        default: () => new Date().toLocaleString("fr-MA", { timeZone: "Africa/Casablanca" })
-    }
-   
 
+const Loginschema = new mongoose.Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true },
+  PhoneNumber: { type: String, required: true },
+  Password: { type: String, required: true },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }
 });
+
 
 const contactshema = new mongoose.Schema({
     nomComplet : {
