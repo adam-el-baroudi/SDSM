@@ -128,35 +128,110 @@ app.post("/inscrire", async (req, res) => {
 });
 
 
+// app.post("/login", async (req, res) => {
+//   try {
+//     // const check = await user.findOne({ name: req.body.name });
+    
+//     // if (!check) {
+//     //   return res.status(400).send("User name not found");
+//     // }
+//     const { name: identifier, Password } = req.body;
+//     if (!identifier || !Password) {
+//       return res.status(400).send("Veuillez fournir un nom/email et un mot de passe");
+//     }
+//     const check = await user.findOne({
+//       $or: [
+//         { name: identifier },
+//         { email: identifier }
+//       ]
+//     });
+//     if (!check) {
+//       return res.status(400).send("Nom ou email introuvable");
+//     }
+
+
+
+
+//     const isPasswordMatch = await bcrypt.compare(req.body.Password, check.Password);
+    
+//     if (!isPasswordMatch) {
+//       return res.status(500).send("Wrong password");
+//     }
+
+//     req.session.user = {
+//       id: check._id,
+//       name: check.name,
+//       email: check.email
+//     };
+
+//     // إذا كلشي صحيح، نقدر نرسل الصفحة الرئيسية أو نعمل redirect
+//     return res.redirect("/HOME");
+
+//   } catch (err) {
+//     console.error("Login error:", err);
+//     return res.status(500).send("L'e-mail ou le numéro de mobile entré n'est pas associé à un compte. Trouvez votre compte et connectez-vous.");
+//   }
+// });
+
+// app.post("/login", async (req, res) => {
+//   try {
+//     if (!req.body) {
+//       return res.status(400).send("Données manquantes");
+//     }
+
+//     const identifier = req.body.name;
+//     const password = req.body.Password;
+
+//     if (!identifier || !password) {
+//       return res.status(400).send("Veuillez fournir un nom/email et un mot de passe");
+//     }
+
+//     const check = await user.findOne({
+//       $or: [{ name: identifier }, { email: identifier }]
+//     });
+
+//     if (!check) {
+//       return res.status(400).send("Nom ou email introuvable");
+//     }
+
+//     const isPasswordMatch = await bcrypt.compare(password, check.Password);
+//     if (!isPasswordMatch) {
+//       return res.status(400).send("Mot de passe incorrect");
+//     }
+
+//     req.session.user = {
+//       id: check._id,
+//       name: check.name,
+//       email: check.email
+//     };
+
+//     return res.redirect("/HOME");
+
+//   } catch (err) {
+//     console.error("Login error:", err);
+//     return res.status(500).send("Erreur serveur lors de la connexion");
+//   }
+// });
+
 app.post("/login", async (req, res) => {
   try {
-    // const check = await user.findOne({ name: req.body.name });
-    
-    // if (!check) {
-    //   return res.status(400).send("User name not found");
-    // }
-    const { name: identifier, Password } = req.body;
-    if (!identifier || !Password) {
+    console.log("req.body:", req.body); // 🔹 debug
+
+    const identifier = req.body.name;
+    const password = req.body.Password;
+
+    if (!identifier || !password) {
       return res.status(400).send("Veuillez fournir un nom/email et un mot de passe");
     }
+
     const check = await user.findOne({
-      $or: [
-        { name: identifier },
-        { email: identifier }
-      ]
+      $or: [{ name: identifier }, { email: identifier }]
     });
-    if (!check) {
-      return res.status(400).send("Nom ou email introuvable");
-    }
 
+    if (!check) return res.status(400).send("Nom ou email introuvable");
 
-
-
-    const isPasswordMatch = await bcrypt.compare(req.body.Password, check.Password);
-    
-    if (!isPasswordMatch) {
-      return res.status(500).send("Wrong password");
-    }
+    const isPasswordMatch = await bcrypt.compare(password, check.Password);
+    if (!isPasswordMatch) return res.status(400).send("Mot de passe incorrect");
 
     req.session.user = {
       id: check._id,
@@ -164,14 +239,14 @@ app.post("/login", async (req, res) => {
       email: check.email
     };
 
-    // إذا كلشي صحيح، نقدر نرسل الصفحة الرئيسية أو نعمل redirect
     return res.redirect("/HOME");
 
   } catch (err) {
     console.error("Login error:", err);
-    return res.status(500).send("L'e-mail ou le numéro de mobile entré n'est pas associé à un compte. Trouvez votre compte et connectez-vous.");
+    return res.status(500).send("Erreur serveur lors de la connexion");
   }
 });
+
 
 
 
