@@ -13,16 +13,29 @@ mongoose.connect(process.env.MONGO_URI)
 
 
 
-
 const Loginschema = new mongoose.Schema({
-  name: { type: String, required: true },
-  email: { type: String, required: true },
-  PhoneNumber: { type: String, required: true },
-  Password: { type: String, required: true },
-  createdAt: {
-    type: Date,
-    default: Date.now
-  }
+    name: {
+        type:String,
+        required: true
+    },
+    email: {
+        type:String,
+        required: true
+    },
+    PhoneNumber: {
+        type: String,
+        required: true
+    },
+    Password: {
+        type: String,
+        required: true
+    },
+    createdAtt : {
+        type:Date,
+        default: Date.now
+    }
+   
+
 });
 
 
