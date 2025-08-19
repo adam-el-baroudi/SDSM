@@ -9,7 +9,7 @@ const { Collection } = require("mongoose");
 
 const app = express();
 
-app.use(express.json());
+
 
 
 
@@ -17,7 +17,7 @@ app.use(express.static("public"));
 app.use('/MEDIA', express.static('MEDIA'));
 
 app.use(express.urlencoded({ extended: true }));
-
+app.use(express.json());
 
 app.use(session({
   secret: 'votreSecretKey',
@@ -135,7 +135,10 @@ app.post("/login", async (req, res) => {
     // if (!check) {
     //   return res.status(400).send("User name not found");
     // }
-    const identifier = req.body.name;
+    const { name: identifier, Password } = req.body;
+    if (!identifier || !Password) {
+      return res.status(400).send("Veuillez fournir un nom/email et un mot de passe");
+    }
     const check = await user.findOne({
       $or: [
         { name: identifier },
@@ -143,7 +146,7 @@ app.post("/login", async (req, res) => {
       ]
     });
     if (!check) {
-      return res.status(500).send("Nom ou email introuvable");
+      return res.status(400).send("Nom ou email introuvable");
     }
 
 
