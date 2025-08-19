@@ -60,35 +60,72 @@ app.get("/services", (req, res) => {
     res.render("services");
 });
 
-app.post("/inscrire" , async(req , res)=>{
-    console.log("Donnees recues :", req.body);
-    const data = {
-        name: req.body.name,
-        email: req.body.email,
-        PhoneNumber: req.body.PhoneNumber,
-        Password: req.body.Password,
-        confirmPassword: req.body.confirmPassword
-    }
-    if (data.Password !== data.confirmPassword){
-        return res.status(500).send("Passwords do not match");
-    }
-    const existingUser = await user.findOne({name : data.name});
-    const existingEmail = await user.findOne({email : data.email});
+// app.post("/inscrire" , async(req , res)=>{
+//     console.log("Donnees recues :", req.body);
+//     const data = {
+//         name: req.body.name,
+//         email: req.body.email,
+//         PhoneNumber: req.body.PhoneNumber,
+//         Password: req.body.Password,
+//         confirmPassword: req.body.confirmPassword
+//     }
+//     if (data.Password !== data.confirmPassword){
+//         return res.status(500).send("Passwords do not match");
+//     }
+//     const existingUser = await user.findOne({name : data.name});
+//     const existingEmail = await user.findOne({email : data.email});
 
-    if(existingUser || existingEmail){
-        return res.status(500).send('User already exists. Please choose a different username.');
+//     if(existingUser || existingEmail){
+//         return res.status(500).send('User already exists. Please choose a different username.');
+//     }
+
+//     const saltRounds = 10;
+//     const hashedPassword = await bcrypt.hash(data.Password, saltRounds);
+//     data.Password = hashedPassword;
+//     delete data.confirmPassword;
+
+//     const userdata = await user.create(data);
+//     console.log("User inserted:", userdata);
+
+//     res.redirect("/");
+// });
+
+app.post("/inscrire", async (req, res) => {
+  try {
+    console.log("Données reçues :", req.body);
+
+    const data = {
+      name: req.body.name,
+      email: req.body.email,
+      PhoneNumber: req.body.PhoneNumber,
+      Password: req.body.Password,
+      confirmPassword: req.body.confirmPassword,
+    };
+
+    if (data.Password !== data.confirmPassword) {
+      return res.status(400).send("Passwords do not match");
+    }
+
+    const existingUser = await user.findOne({ name: data.name });
+    const existingEmail = await user.findOne({ email: data.email });
+    if (existingUser || existingEmail) {
+      return res.status(409).send("User already exists");
     }
 
     const saltRounds = 10;
-    const hashedPassword = await bcrypt.hash(data.Password, saltRounds);
-    data.Password = hashedPassword;
+    data.Password = await bcrypt.hash(data.Password, saltRounds);
     delete data.confirmPassword;
 
     const userdata = await user.create(data);
     console.log("User inserted:", userdata);
 
-    res.redirect("/");
+    return res.redirect("/");
+  } catch (err) {
+    console.error("Erreur inscription:", err);  // <-- هادي غادي تبين التفاصيل
+    return res.status(500).send("Internal Server Error");
+  }
 });
+
 
 app.post("/login", async (req, res) => {
   try {
